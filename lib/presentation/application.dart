@@ -17,7 +17,7 @@ class Application extends StatelessWidget {
           backgroundColor: ColorStyles.backgroundColor,
           fontFamily: 'Lato',
         ),
-        home: HomeScreen(),
+        home: const HomeScreen(),
       ),
     );
   }
