@@ -1,3 +1,4 @@
+import 'package:demo_project/presentation/styles/color_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -7,14 +8,14 @@ class CustomAppBar {
     Widget? leading,
   }) {
     return AppBar(
-      backgroundColor: Colors.white,
+      backgroundColor: ColorStyles.backgroundAppBarColor,
       leading: leading,
       title: Text(
         title,
         style: TextStyle(
-          color: Colors.black,
+          color: ColorStyles.primaryFontColor,
           fontSize: 20.sp,
-          fontWeight: FontWeight.w700,
+          fontWeight: FontWeight.w800,
         ),
       ),
       elevation: 1,
