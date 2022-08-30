@@ -16,4 +16,8 @@ class ColorStyles{
   ///error body
   static const iconErrorColor = Color.fromRGBO(234, 88, 91, 0.4);
 
+  ///image network
+  static const backgroundFrameColor = Color.fromRGBO(237, 238, 242, 1);
+  static const circularIndicatorColor = Color.fromRGBO(255, 68, 0, 1);
+
 }

@@ -37,34 +37,27 @@ class PostCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
           ),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            if (thumbnail != null)
-              ClipRRect(
-                borderRadius: const BorderRadius.vertical(
-                  top: Radius.circular(12),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: _ImagePostCard(thumbnail: thumbnail),
+            ),
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 10.w,
                 ),
-                child: SizedBox(
-                  width: double.maxFinite,
-                  child: Image.network(
-                    thumbnail!,
-                    fit: BoxFit.cover,
+                child: Text(
+                  title,
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    color: ColorStyles.primaryFontColor,
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w700,
                   ),
-                ),
-              ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 20.w,
-                vertical: 10.h,
-              ),
-              child: Text(
-                title,
-                style: TextStyle(
-                  color: ColorStyles.primaryFontColor,
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w700,
-                  height: 1.5,
                 ),
               ),
             ),
@@ -72,5 +65,44 @@ class PostCard extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class _ImagePostCard extends StatelessWidget {
+  final String? thumbnail;
+
+  const _ImagePostCard({
+    Key? key,
+    required this.thumbnail,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return thumbnail == null
+        ? const SizedBox()
+        : ClipRRect(
+            borderRadius: const BorderRadius.horizontal(
+              left: Radius.circular(12),
+            ),
+            child: Image.network(
+              thumbnail!,
+              frameBuilder: (context, child, frame, isLoaded) {
+                return Container(
+                  width: 120.w,
+                  color: ColorStyles.backgroundCardColor,
+                  child: child,
+                );
+              },
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) return child;
+                return const Center(
+                  child: CircularProgressIndicator(
+                    color: ColorStyles.circularIndicatorColor,
+                  ),
+                );
+              },
+              errorBuilder: (context, error, stackTrace) => const SizedBox(),
+            ),
+          );
   }
 }

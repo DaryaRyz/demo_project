@@ -1,11 +1,13 @@
 import 'package:demo_project/data/repository/post_data_repository.dart';
 import 'package:demo_project/data/rest_service.dart';
 import 'package:demo_project/domain/bloc/post_bloc.dart';
+import 'package:demo_project/presentation/screens/home_screen/widgets/post_card.dart';
 import 'package:demo_project/presentation/styles/color_styles.dart';
 import 'package:demo_project/presentation/widgets/custom_app_bar.dart';
 import 'package:demo_project/presentation/widgets/error_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -45,6 +47,21 @@ class _HomeScreenState extends State<HomeScreen> {
               onTap: () {
                 _postBloc.add(PostBlocInitialEvent());
               },
+            );
+          } else if (state is PostBlocReadyState) {
+            return ListView.separated(
+              physics: const BouncingScrollPhysics(),
+              padding: EdgeInsets.symmetric(
+                horizontal: 20.w,
+                vertical: 20.h,
+              ),
+              itemCount: state.posts.length,
+              separatorBuilder: (context, index) => SizedBox(height: 20.h),
+              itemBuilder: (context, index) => PostCard(
+                title: state.posts[index].title,
+                thumbnail: state.posts[index].thumbnail,
+                onTap: () {},
+              ),
             );
           } else {
             return const SizedBox();
