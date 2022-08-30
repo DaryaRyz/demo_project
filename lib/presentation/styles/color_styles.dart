@@ -1,9 +1,10 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class ColorStyles{
   static const backgroundColor = Color.fromRGBO(218, 224, 230, 1);
   static const primaryFontColor = Color.fromRGBO(49, 49, 49, 1);
   static const backgroundAppBarColor = Color.fromRGBO(255, 255, 255, 1);
+  static const primaryOrangeColor = Color.fromRGBO(255, 68, 0, 1);
 
   ///post card color
   static const backgroundCardColor = Color.fromRGBO(255, 255, 255, 1);
@@ -11,5 +12,8 @@ class ColorStyles{
 
   /// primary button color
   static const primaryButtonColor = Color.fromRGBO(0, 0, 0, 0.87);
+
+  ///error body
+  static const iconErrorColor = Color.fromRGBO(234, 88, 91, 0.4);
 
 }
