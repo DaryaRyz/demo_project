@@ -1,6 +1,6 @@
 import 'package:demo_project/data/repository/post_repository.dart';
 import 'package:demo_project/data/rest_service.dart';
-import 'package:demo_project/domain/models/post_models.dart';
+import 'package:demo_project/domain/models/post.dart';
 
 class PostDataRepository implements PostRepository{
   final RestService restService;
@@ -8,11 +8,11 @@ class PostDataRepository implements PostRepository{
   PostDataRepository({required this.restService});
 
   @override
-  Future<List<PostModels>> getPost() async {
+  Future<List<Post>> getPost() async {
     final response = await restService.getPost();
-    List<PostModels> result = [];
+    List<Post> result = [];
     for(var element in response){
-      result.add(PostModels.fromMap(element));
+      result.add(Post.fromMap(element));
     }
     return result;
   }

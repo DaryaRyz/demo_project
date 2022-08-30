@@ -1,4 +1,4 @@
-class PostModels {
+class Post {
   static const _dataKey = "data";
   static const _titleKey = "title";
   static const _thumbnailKey = "thumbnail";
@@ -12,7 +12,7 @@ class PostModels {
   final int? ups;
   final String selftext;
 
-  PostModels({
+  Post({
     required this.title,
     required this.thumbnail,
     //required this.created,
@@ -20,7 +20,7 @@ class PostModels {
     required this.selftext,
   });
 
-  PostModels.fromMap(Map<String, dynamic> map)
+  Post.fromMap(Map<String, dynamic> map)
       : title = map[_dataKey][_titleKey] ?? '',
         thumbnail = map[_dataKey][_thumbnailKey],
         // created = DateTime.fromMillisecondsSinceEpoch(

@@ -1,5 +1,5 @@
-import 'package:demo_project/domain/models/post_models.dart';
+import 'package:demo_project/domain/models/post.dart';
 
 abstract class PostRepository {
-  Future<List<PostModels>> getPost();
+  Future<List<Post>> getPost();
 }
