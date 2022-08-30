@@ -8,7 +8,8 @@ class ColorStyles{
 
   ///post card color
   static const backgroundCardColor = Color.fromRGBO(255, 255, 255, 1);
-  static const shadowCardColor = Color.fromRGBO(0, 0, 0, 0.25);
+  static const shadowCardColor = Color.fromRGBO(137, 148, 158, 0.5);
+  static const borderCardColor = Color.fromRGBO(225, 225, 225, 1);
 
   /// primary button color
   static const primaryButtonColor = Color.fromRGBO(0, 0, 0, 0.87);
@@ -20,4 +21,6 @@ class ColorStyles{
   static const backgroundFrameColor = Color.fromRGBO(237, 238, 242, 1);
   static const circularIndicatorColor = Color.fromRGBO(255, 68, 0, 1);
 
+  ///post screen
+  static const backgroundPlusColor = Color.fromRGBO(236, 240, 244, 1);
 }

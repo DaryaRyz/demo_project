@@ -1,4 +1,4 @@
-import 'package:demo_project/data/repository/post_data_repository.dart';
+import 'package:demo_project/data/repository/post_repository.dart';
 import 'package:demo_project/data/rest_service.dart';
 import 'package:demo_project/domain/bloc/post_bloc.dart';
 import 'package:demo_project/presentation/screens/home_screen/widgets/post_card.dart';

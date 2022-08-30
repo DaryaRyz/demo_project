@@ -10,22 +10,29 @@ class Post {
   final String? thumbnail;
   //final DateTime created;
   final int? ups;
-  final String selftext;
+  final String selfText;
 
   Post({
     required this.title,
     required this.thumbnail,
     //required this.created,
     required this.ups,
-    required this.selftext,
+    required this.selfText,
   });
 
   Post.fromMap(Map<String, dynamic> map)
       : title = map[_dataKey][_titleKey] ?? '',
-        thumbnail = map[_dataKey][_thumbnailKey],
+        thumbnail = _convertUrl(url: map[_dataKey][_thumbnailKey]),
         // created = DateTime.fromMillisecondsSinceEpoch(
         //   map[_dataKey][_createdKey] * 1000,
         // ),
         ups = map[_dataKey][_upsKey],
-        selftext = map[_dataKey][_selftextKey] ?? '';
+        selfText = map[_dataKey][_selftextKey] ?? '';
+
+  static String? _convertUrl({required String? url}){
+    if(url != null && url.contains('http')){
+      return url;
+    }
+    return null;
+  }
 }
