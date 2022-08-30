@@ -9,6 +9,10 @@ class CustomAppBar {
   }) {
     return AppBar(
       backgroundColor: ColorStyles.backgroundAppBarColor,
+      iconTheme: IconThemeData(
+        color: Colors.black,
+        size: 25.r,
+      ),
       leading: leading,
       title: Text(
         title,
