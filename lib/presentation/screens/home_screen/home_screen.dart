@@ -1,7 +1,8 @@
-import 'package:demo_project/data/repository/post_data_repository.dart';
+import 'package:demo_project/data/repository/post_repository.dart';
 import 'package:demo_project/data/rest_service.dart';
 import 'package:demo_project/domain/bloc/post_bloc.dart';
 import 'package:demo_project/presentation/screens/home_screen/widgets/post_card.dart';
+import 'package:demo_project/presentation/screens/post_screen/post_screeen.dart';
 import 'package:demo_project/presentation/styles/color_styles.dart';
 import 'package:demo_project/presentation/widgets/custom_app_bar.dart';
 import 'package:demo_project/presentation/widgets/error_body.dart';
@@ -60,7 +61,16 @@ class _HomeScreenState extends State<HomeScreen> {
               itemBuilder: (context, index) => PostCard(
                 title: state.posts[index].title,
                 thumbnail: state.posts[index].thumbnail,
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PostScreen(
+                        post: state.posts[index],
+                      ),
+                    ),
+                  );
+                },
               ),
             );
           } else {

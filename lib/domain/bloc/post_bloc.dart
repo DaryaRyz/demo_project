@@ -30,7 +30,6 @@ class PostBloc extends Bloc<PostBlocEvent, PostBlocState> {
 abstract class PostBlocEvent {}
 
 class PostBlocInitialEvent extends PostBlocEvent {}
-
 class PostBlocRefreshEvent extends PostBlocEvent {}
 
 abstract class PostBlocState {}
@@ -40,7 +39,5 @@ class PostBlocReadyState extends PostBlocState {
 
   PostBlocReadyState({required this.posts});
 }
-
 class PostBlocErrorState extends PostBlocState {}
-
 class PostBlocLoadingState extends PostBlocState {}

@@ -20,7 +20,11 @@ class PostCard extends StatelessWidget {
       width: double.maxFinite,
       decoration: BoxDecoration(
         color: ColorStyles.backgroundCardColor,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(5),
+        border: Border.all(
+          color: ColorStyles.borderCardColor,
+          width: 1,
+        ),
         boxShadow: const [
           BoxShadow(
             color: ColorStyles.shadowCardColor,
@@ -34,17 +38,18 @@ class PostCard extends StatelessWidget {
           primary: ColorStyles.primaryButtonColor,
           padding: EdgeInsets.zero,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(5),
           ),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: _ImagePostCard(thumbnail: thumbnail),
-            ),
+            if (thumbnail != null)
+              Align(
+                alignment: Alignment.centerLeft,
+                child: _ImagePostCard(thumbnail: thumbnail!),
+              ),
             Expanded(
               child: Padding(
                 padding: EdgeInsets.symmetric(
@@ -69,7 +74,7 @@ class PostCard extends StatelessWidget {
 }
 
 class _ImagePostCard extends StatelessWidget {
-  final String? thumbnail;
+  final String thumbnail;
 
   const _ImagePostCard({
     Key? key,
@@ -78,31 +83,29 @@ class _ImagePostCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return thumbnail == null
-        ? const SizedBox()
-        : ClipRRect(
-            borderRadius: const BorderRadius.horizontal(
-              left: Radius.circular(12),
-            ),
-            child: Image.network(
-              thumbnail!,
-              frameBuilder: (context, child, frame, isLoaded) {
-                return Container(
-                  width: 120.w,
-                  color: ColorStyles.backgroundCardColor,
-                  child: child,
-                );
-              },
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress == null) return child;
-                return const Center(
-                  child: CircularProgressIndicator(
-                    color: ColorStyles.circularIndicatorColor,
-                  ),
-                );
-              },
-              errorBuilder: (context, error, stackTrace) => const SizedBox(),
+    return ClipRRect(
+      borderRadius: const BorderRadius.horizontal(
+        left: Radius.circular(5),
+      ),
+      child: Image.network(
+        thumbnail,
+        frameBuilder: (context, child, frame, isLoaded) {
+          return Container(
+            width: 120.w,
+            color: ColorStyles.backgroundCardColor,
+            child: child,
+          );
+        },
+        loadingBuilder: (context, child, loadingProgress) {
+          if (loadingProgress == null) return child;
+          return const Center(
+            child: CircularProgressIndicator(
+              color: ColorStyles.circularIndicatorColor,
             ),
           );
+        },
+        errorBuilder: (context, error, stackTrace) => const SizedBox(),
+      ),
+    );
   }
 }
