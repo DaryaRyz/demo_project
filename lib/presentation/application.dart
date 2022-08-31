@@ -13,7 +13,7 @@ class Application extends StatelessWidget {
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primaryColor: Colors.black,
+          primaryColor: ColorStyles.primaryFontColor,
           backgroundColor: ColorStyles.backgroundColor,
           fontFamily: 'Lato',
         ),

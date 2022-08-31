@@ -2,11 +2,21 @@ import 'package:demo_project/presentation/styles/color_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CustomAppBar {
-  static AppBar get({
-    required String title,
-    Widget? leading,
-  }) {
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final String title;
+  final Widget? leading;
+
+  const CustomAppBar({
+    Key? key,
+    required this.title,
+    this.leading,
+  }) : super(key: key);
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+
+  @override
+  Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: ColorStyles.backgroundAppBarColor,
       iconTheme: IconThemeData(

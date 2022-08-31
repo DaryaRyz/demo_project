@@ -6,13 +6,13 @@ abstract class PostRepository {
 }
 
 class PostDataRepository implements PostRepository {
-  final ApiUtil restService;
+  final ApiUtil apiUtil;
 
-  PostDataRepository({required this.restService});
+  PostDataRepository({required this.apiUtil});
 
   @override
   Future<List<Post>> getPost() async {
-    final response = await restService.getPost();
+    final response = await apiUtil.getPost();
     List<Post> result = [];
     for (var element in response) {
       result.add(Post.fromMap(element));

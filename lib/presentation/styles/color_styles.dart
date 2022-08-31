@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ColorStyles{
+abstract class ColorStyles{
   static const backgroundColor = Color.fromRGBO(218, 224, 230, 1);
   static const primaryFontColor = Color.fromRGBO(49, 49, 49, 1);
   static const backgroundAppBarColor = Color.fromRGBO(255, 255, 255, 1);

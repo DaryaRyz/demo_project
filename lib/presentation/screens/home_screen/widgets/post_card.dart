@@ -1,17 +1,16 @@
+import 'package:demo_project/domain/models/post.dart';
 import 'package:demo_project/presentation/styles/color_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PostCard extends StatelessWidget {
-  final String? title;
-  final String? thumbnail;
+  final Post post;
   final VoidCallback onTap;
 
   const PostCard({
     Key? key,
-    required this.title,
-    required this.thumbnail,
     required this.onTap,
+    required this.post,
   }) : super(key: key);
 
   @override
@@ -45,12 +44,12 @@ class PostCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            if (thumbnail != null)
+            if (post.thumbnail != null)
               Align(
                 alignment: Alignment.centerLeft,
-                child: _ImagePostCard(thumbnail: thumbnail!),
+                child: _ImagePostCard(thumbnail: post.thumbnail!),
               ),
-            if (title != null)
+            if (post.title != null)
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.symmetric(
@@ -58,7 +57,7 @@ class PostCard extends StatelessWidget {
                     vertical: 5.h,
                   ),
                   child: Text(
-                    title!,
+                    post.title!,
                     textAlign: TextAlign.start,
                     style: TextStyle(
                       color: ColorStyles.primaryFontColor,

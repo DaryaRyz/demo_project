@@ -20,7 +20,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final _postBloc = PostBloc(
     repository: PostDataRepository(
-      restService: ApiUtil(),
+      apiUtil: ApiUtil(),
     ),
   );
 
@@ -31,9 +31,15 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
+  void dispose() {
+    _postBloc.close();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar.get(title: 'Posts from Reddit'),
+      appBar: const CustomAppBar(title: 'Posts from Reddit'),
       body: BlocBuilder(
         bloc: _postBloc,
         builder: (context, state) {
@@ -63,10 +69,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   vertical: 20.h,
                 ),
                 itemCount: state.posts.length,
-                separatorBuilder: (context, index) => SizedBox(height: 20.h),
+                separatorBuilder: (_, __) => SizedBox(height: 20.h),
                 itemBuilder: (context, index) => PostCard(
-                  title: state.posts[index].title,
-                  thumbnail: state.posts[index].thumbnail,
+                  post: state.posts[index],
                   onTap: () {
                     Navigator.push(
                       context,

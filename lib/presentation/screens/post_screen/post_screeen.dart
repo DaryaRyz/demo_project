@@ -16,7 +16,7 @@ class PostScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorStyles.backgroundColor,
-      appBar: CustomAppBar.get(title: 'Post'),
+      appBar: const CustomAppBar(title: 'Post'),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 40.h),

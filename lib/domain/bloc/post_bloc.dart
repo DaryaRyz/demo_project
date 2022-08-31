@@ -42,7 +42,9 @@ class PostBloc extends Bloc<PostBlocEvent, PostBlocState> {
       ///sorting elements by date
       postList.sort(
         (a, b) {
-          if (a.created == null || b.created == null) {
+          if (a.created == null) {
+            return 1;
+          } else if (b.created == null) {
             return -1;
           } else {
             return b.created!.compareTo(a.created!);
@@ -61,6 +63,7 @@ class PostBloc extends Bloc<PostBlocEvent, PostBlocState> {
 abstract class PostBlocEvent {}
 
 class PostBlocInitialEvent extends PostBlocEvent {}
+
 class PostBlocRefreshEvent extends PostBlocEvent {}
 
 abstract class PostBlocState {}
@@ -70,5 +73,7 @@ class PostBlocReadyState extends PostBlocState {
 
   PostBlocReadyState({required this.posts});
 }
+
 class PostBlocErrorState extends PostBlocState {}
+
 class PostBlocLoadingState extends PostBlocState {}
