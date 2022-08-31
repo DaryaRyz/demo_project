@@ -17,6 +17,12 @@ class PostBloc extends Bloc<PostBlocEvent, PostBlocState> {
     emit(PostBlocLoadingState());
     try {
       final postList = await repository.getPost();
+
+      ///checking elements for null
+      postList.removeWhere(
+        (element) => element.title == null && element.thumbnail == null,
+      );
+
       emit(PostBlocReadyState(posts: postList));
     } catch (error) {
       Logger().e(error);
@@ -24,7 +30,32 @@ class PostBloc extends Bloc<PostBlocEvent, PostBlocState> {
     }
   }
 
-  FutureOr<void> _refreshHandler(PostBlocRefreshEvent event, emit) {}
+  FutureOr<void> _refreshHandler(PostBlocRefreshEvent event, emit) async {
+    try {
+      final postList = await repository.getPost();
+
+      ///checking elements for null
+      postList.removeWhere(
+        (element) => element.title == null && element.thumbnail == null,
+      );
+
+      ///sorting elements by date
+      postList.sort(
+        (a, b) {
+          if (a.created == null || b.created == null) {
+            return -1;
+          } else {
+            return b.created!.compareTo(a.created!);
+          }
+        },
+      );
+
+      emit(PostBlocReadyState(posts: postList));
+    } catch (error) {
+      Logger().e(error);
+      emit(PostBlocErrorState());
+    }
+  }
 }
 
 abstract class PostBlocEvent {}

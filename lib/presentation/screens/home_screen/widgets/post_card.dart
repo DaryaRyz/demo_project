@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PostCard extends StatelessWidget {
-  final String title;
+  final String? title;
   final String? thumbnail;
   final VoidCallback onTap;
 
@@ -50,22 +50,24 @@ class PostCard extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: _ImagePostCard(thumbnail: thumbnail!),
               ),
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 10.w,
-                ),
-                child: Text(
-                  title,
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                    color: ColorStyles.primaryFontColor,
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w700,
+            if (title != null)
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 10.w,
+                    vertical: 5.h,
+                  ),
+                  child: Text(
+                    title!,
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      color: ColorStyles.primaryFontColor,
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
               ),
-            ),
           ],
         ),
       ),

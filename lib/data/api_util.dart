@@ -1,7 +1,7 @@
 import 'package:demo_project/data/routes.dart';
 import 'package:dio/dio.dart';
 
-class RestService{
+class ApiUtil{
   final Dio _dio = Dio();
 
   Future<List> getPost() async {
