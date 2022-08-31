@@ -1,5 +1,5 @@
 import 'package:demo_project/data/repository/post_repository.dart';
-import 'package:demo_project/data/rest_service.dart';
+import 'package:demo_project/data/api_util.dart';
 import 'package:demo_project/domain/bloc/post_bloc.dart';
 import 'package:demo_project/presentation/screens/home_screen/widgets/post_card.dart';
 import 'package:demo_project/presentation/screens/post_screen/post_screeen.dart';
@@ -20,7 +20,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final _postBloc = PostBloc(
     repository: PostDataRepository(
-      restService: RestService(),
+      restService: ApiUtil(),
     ),
   );
 
@@ -50,27 +50,34 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             );
           } else if (state is PostBlocReadyState) {
-            return ListView.separated(
-              physics: const BouncingScrollPhysics(),
-              padding: EdgeInsets.symmetric(
-                horizontal: 20.w,
-                vertical: 20.h,
-              ),
-              itemCount: state.posts.length,
-              separatorBuilder: (context, index) => SizedBox(height: 20.h),
-              itemBuilder: (context, index) => PostCard(
-                title: state.posts[index].title,
-                thumbnail: state.posts[index].thumbnail,
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => PostScreen(
-                        post: state.posts[index],
+            return RefreshIndicator(
+              color: ColorStyles.primaryOrangeColor,
+              onRefresh: () async {
+                await Future.delayed(const Duration(milliseconds: 1000));
+                _postBloc.add(PostBlocInitialEvent());
+              },
+              child: ListView.separated(
+                physics: const BouncingScrollPhysics(),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 20.w,
+                  vertical: 20.h,
+                ),
+                itemCount: state.posts.length,
+                separatorBuilder: (context, index) => SizedBox(height: 20.h),
+                itemBuilder: (context, index) => PostCard(
+                  title: state.posts[index].title,
+                  thumbnail: state.posts[index].thumbnail,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PostScreen(
+                          post: state.posts[index],
+                        ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
             );
           } else {

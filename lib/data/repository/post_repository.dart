@@ -1,4 +1,4 @@
-import 'package:demo_project/data/rest_service.dart';
+import 'package:demo_project/data/api_util.dart';
 import 'package:demo_project/domain/models/post.dart';
 
 abstract class PostRepository {
@@ -6,7 +6,7 @@ abstract class PostRepository {
 }
 
 class PostDataRepository implements PostRepository {
-  final RestService restService;
+  final ApiUtil restService;
 
   PostDataRepository({required this.restService});
 
