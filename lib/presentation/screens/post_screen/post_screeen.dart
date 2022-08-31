@@ -23,15 +23,16 @@ class PostScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                post.title,
-                textAlign: TextAlign.justify,
-                style: TextStyle(
-                  color: ColorStyles.primaryFontColor,
-                  fontSize: 22.sp,
-                  fontWeight: FontWeight.w700,
+              if (post.title != null)
+                Text(
+                  post.title!,
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(
+                    color: ColorStyles.primaryFontColor,
+                    fontSize: 22.sp,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
-              ),
               SizedBox(height: 20.h),
               Align(
                 alignment: Alignment.centerRight,
@@ -62,15 +63,16 @@ class PostScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20.h),
-              Text(
-                post.selfText,
-                textAlign: TextAlign.justify,
-                style: TextStyle(
-                  color: ColorStyles.primaryFontColor.withOpacity(0.6),
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w500,
+              if (post.selfText != null)
+                Text(
+                  post.selfText!,
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(
+                    color: ColorStyles.primaryFontColor.withOpacity(0.6),
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
-              ),
             ],
           ),
         ),

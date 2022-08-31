@@ -53,8 +53,8 @@ class _HomeScreenState extends State<HomeScreen> {
             return RefreshIndicator(
               color: ColorStyles.primaryOrangeColor,
               onRefresh: () async {
+                _postBloc.add(PostBlocRefreshEvent());
                 await Future.delayed(const Duration(milliseconds: 1000));
-                _postBloc.add(PostBlocInitialEvent());
               },
               child: ListView.separated(
                 physics: const BouncingScrollPhysics(),
